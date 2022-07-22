@@ -95,6 +95,12 @@ INTO cos://us-south/sql-3d9a7cc0-f590-4293-9849-1960d537e1a9/result/ STORED AS J
 notebook:
 
 ```
+!pip install pyarrow 
+!pip install sqlparse
+!pip uninstall --yes autoai-libs tensorflow-text numba numpy
+!pip install numpy==1.22.4
+!pip install --upgrade ibmcloudsql
+
 import ibmcloudsql
 import sqlparse 
 from pygments import highlight
@@ -103,7 +109,7 @@ from pygments.formatters import HtmlFormatter, Terminal256Formatter
 lexer = get_lexer_by_name("sql", stripall=True)
 formatter = Terminal256Formatter
 
-apikey='VzOR-c4M0WIDDJVRmAHCRgkjidap41sYcrMhrJTkUdtH'
+apikey='VzOR-0123456789RmAHCRgkjidap41sYcrMhrJTkUdtH'
 instancecrn='crn:v1:bluemix:public:sql-query:us-south:a/713c783d9a507a53135fe6793c37cc74:3d9a7cc0-f590-4293-9849-1960d537e1a9::'
 dataengineurl='cos://s3.us-south.cloud-object-storage.appdomain.cloud/dataengine002/notebook'
 logsurl="cos://s3.us-south.cloud-object-storage.appdomain.cloud/activitytrackerarchiving002"
@@ -146,4 +152,12 @@ result_df["_source__line"].head(2)
 sqlClient.get_schema_data(logbucket, dry_run=True)
 sqlClient.get_schema_data(logbucket)
 
+```
+
+```
+pip install pyarrow 
+pip install sqlparse
+pip uninstall --yes autoai-libs tensorflow-text numba numpy
+pip install numpy==1.22.4
+pip install --upgrade ibmcloudsql
 ```
