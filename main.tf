@@ -93,7 +93,7 @@ resource "ibm_iam_service_id" "jupyter_notebook" {
 
 resource "ibm_iam_service_policy" "jupyter_notebook1" {
   iam_service_id = ibm_iam_service_id.jupyter_notebook.id
-  roles          = ["Writer"]
+  roles          = ["Reader"]
   resources {
     service              = "cloud-object-storage"
     resource_instance_id = ibm_resource_instance.cos.guid
