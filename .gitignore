@@ -12,3 +12,4 @@ __pycache__
 terraform.tfstate
 *.drawio.dtmp
 venv/
+.ipynb_checkpoints/
