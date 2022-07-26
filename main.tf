@@ -1,6 +1,5 @@
 locals {
   resource_group = data.ibm_resource_group.all_rg.id
-  bucket_suffix  = "001" # all buckets must be globally unique
 }
 
 data "ibm_resource_group" "all_rg" {
@@ -17,7 +16,7 @@ resource "ibm_resource_instance" "cos" {
 }
 
 resource "ibm_cos_bucket" "archive" {
-  bucket_name          = "${var.prefix}-${local.bucket_suffix}"
+  bucket_name          = "${var.prefix}-${var.bucket_suffix}"
   resource_instance_id = ibm_resource_instance.cos.id
   region_location      = var.region
   storage_class        = "smart"
@@ -25,7 +24,7 @@ resource "ibm_cos_bucket" "archive" {
 }
 
 resource "ibm_cos_bucket" "data_engine" {
-  bucket_name          = "${var.prefix}-data-engine-${local.bucket_suffix}"
+  bucket_name          = "${var.prefix}-data-engine-${var.bucket_suffix}"
   resource_instance_id = ibm_resource_instance.cos.id
   region_location      = var.region
   storage_class        = "smart"
@@ -136,7 +135,7 @@ locals {
 }
 
 output "jupyter_notebook_configuration_python" {
-  value = <<-EOT
+  value     = <<-EOT
   apikey='${local.jupyter_notebook_configuration.apikey}'
   instancecrn='${local.jupyter_notebook_configuration.data_engine_crn}'
   dataengineurl='cos://${local.jupyter_notebook_configuration.bucket_data_engine_endpoint}/${local.jupyter_notebook_configuration.bucket_data_engine}'

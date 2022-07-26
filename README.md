@@ -13,6 +13,23 @@ jupyter-lab
 
 ## Creating the resources
 
+### Schematics
+
+1. Log in to [IBM Cloud](https://cloud.ibm.com/)
+1. Navigaete to [Create Schematics Workspaces}](https://cloud.ibm.com/schematics/workspaces/create?repository=https://github.com/IBM-Cloud/log-archive-analysis&terraform_version=terraform_v1.1) Under the **Specify Template** section, verify:
+   1.  **Repository URL** is `https://github.com/IBM-Cloud/vpc-tutorials/tree/master/vpc-site2site-vpn`
+   1. **Terriform version** is **terraform_v1.1**
+2. Under **Workspace details**,
+   1. Provide a workspace name : **log-archive**.
+   2. Choose a `Resource Group` and a `Location`.
+   3. Click on **Next**.
+3. Verify the details and then click on **Create**.
+4. Under **Variables**, change the default values as desired.  The **resource-group-name** must be an existing [Resource group](https://cloud.ibm.com/account/resource-groups)
+6. Scroll to the top of the page and click **Apply plan**. Check the logs to see the status of the services created.
+
+
+### Terraform
+
 See [CLI Getting Started](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
 
 Login to IBM Cloud via the command line:
