@@ -41,7 +41,6 @@ resource "ibm_resource_instance" "data_engine" {
   location          = var.region
 }
 
-
 #--- watson studio data sience experience 
 resource "ibm_resource_instance" "watson" {
   name              = "${var.prefix}-watson"
@@ -85,7 +84,7 @@ output "logging_dashboard_settings_archiving" {
 }
 
 
-#--- iam for jupyter notebook to use data engine and data engine to access cos bockets
+#--- iam for jupyter notebook to use data engine and data engine to access cos buckets
 
 resource "ibm_iam_service_id" "jupyter_notebook" {
   name = "${var.prefix}-jupyter-notebook"

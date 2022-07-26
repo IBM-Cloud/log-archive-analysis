@@ -1,6 +1,16 @@
 # Historical analysis of Cloud Observability data
 This is a companion repository for the [blog post](todo)
 
+## Jupyter notebook
+
+Run the jupyter notebook on your desktop:
+
+```
+# prerequisite: run in a python virtual environment I use: python -m venv venv; source venv/bin/activate
+pip install jupyterlab
+jupyter-lab
+```
+
 ## Creating the resources
 
 See [CLI Getting Started](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
