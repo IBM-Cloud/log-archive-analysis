@@ -75,7 +75,7 @@ resource "ibm_iam_service_api_key" "write_bucket_archive" {
 output "logging_dashboard_settings_archiving" {
   value = {
     Bucket     = ibm_cos_bucket.archive.bucket_name
-    Endpoint   = ibm_cos_bucket.archive.s3_endpoint_private
+    Endpoint   = ibm_cos_bucket.archive.s3_endpoint_public
     APIKey     = ibm_iam_service_api_key.write_bucket_archive.apikey
     InstanceId = ibm_resource_instance.cos.crn
   }
