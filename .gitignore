@@ -13,3 +13,4 @@ terraform.tfstate
 *.drawio.dtmp
 venv/
 .ipynb_checkpoints/
+globals.py

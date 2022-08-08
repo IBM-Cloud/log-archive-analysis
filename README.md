@@ -1,8 +1,14 @@
 # Historical analysis of Cloud Observability data
-This is a companion repository for the [blog post](todo)
+This is a companion repository for the [blog post](https://www.ibm.com/cloud/blog/historical-analysis-of-cloud-observability-data) which explains in more details the architecture and steps to provision and analyze data.
+
+Architecture:
+
+![image](./drawio/log-archive-architecture.svg)
+
+
 
 # Step 1: Creating the resources
-See creating resources directly with terraform below as an alternative creation choice.
+See creating resources directly with terraform below as an alternative to using the IBM Schematics service.
 
 ## Create resources using schematics
 
@@ -19,7 +25,7 @@ See creating resources directly with terraform below as an alternative creation 
 4. Under **Variables** change the **resource-group-name** and the other defaults as desired. 
 7. Scroll to the top of the page and click **Apply plan**. Check the logs to see the status of the services created.
 
-# Get schematics output
+## Get schematics output
 
 Use the [IBM Cloud Shell](https://cloud.ibm.com/shell) to run the following commands.  Alternatively you will find instructions to download and install ibmcloud and jq for your operating environment in the [Getting started with tutorials](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-tutorials) guide.
 
@@ -45,11 +51,31 @@ The configuration variables retrieved below will be used in future steps.
 
 # Step 2: Enable Archiving
 
-Copy from blog post after review
+- Open the Activity Tracker instance list.
+- Create an Activity Tracker in the same region as your resources from the previous step (if one does not exist).
+- Open the dashboard of the Activity Tracker.
+- Click the Settings cog, click Archiving and then click Manage.
+- Click Enable Archiving.
+- Select IBM Cloud Object Storage in the Provider drop-down menu.
+- Fill in the values with the items generated in Step 1.
+- Click Save
+
+Wait until archives are visible in bucket - can take 24 hours.
 
 # Step 3: Jupyter Notebook
 
-Copy from blog post after review
+- Open the Watson Studio resource - start in the [resource list](https://cloud.ibm.com/resources).
+- Click Launch in IBM Cloud Pak for Data.
+- If a pop-up screen/overlay page is displayed, dismiss it. It is not needed for this post.
+- Click the + in the Project section to create a new project. Click Create an empty project.
+- Provide a name. In the Select storage service section, select log-archive-cos from the drop-down menu and click Create.
+- In the project, create a Jupyter notebook
+- Click the Assets panel at the top.
+- Click New asset.
+- Type "jupyter" in the search, which should display a Jupyter notebook editor card. Click the card.
+- Name the notebook and click the From URL panel at the top.
+- Leave the default runtime (IBM Runtime 22.1 on Python 3.9 XS 2vCPU 8 GB RAM for me) and paste this string for the Notebook URL: https://github.com/IBM-Cloud/log-archive-analysis/blob/master/logarchive.ipynb. Then, click Create.
+
 
 # Clean up
 
@@ -61,14 +87,14 @@ Copy from blog post after review
 
 
 
-## Troubleshooting
+# Troubleshooting
 
 Jupyter notebook query fails with `Unable to infer schema for JSON. It must be specified manually.`
 Maybe the COS bucket used for log archiving is empty
 - Is the logging or activity tracker dashboard configured to archive?
 - Are the variables correct including the crn that ends in ::
 
-## Creating resources directly with Terraform alternative
+# Step 1: Creating resources directly with Terraform alternative
 
 This is an alternative to using the IBM Schematics Service.
 
